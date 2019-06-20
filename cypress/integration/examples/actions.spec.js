@@ -29,7 +29,7 @@ function getAllLinks() {
     let count = 0;
     return cy.xpath('//a[starts-with(@href,"https://www.cypress") or starts-with(@href, "/")]')
         .each(($li) => {
-            cy.wrap($li).should('have.attr', 'href').then((href) => {
+            cy.wrap($li).invoke('attr', 'href').then((href) => {
                 if (href.indexOf('www.cypress.io') === -1) {
                     href = "https://www.cypress.io" + href;
                 }
