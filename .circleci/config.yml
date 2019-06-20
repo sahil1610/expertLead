@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  cypress/run:
+    parallelism: 1
+    steps:
+    - checkout
+    - run:
+        name: npm install
+        command: npm install
+    - run:
+        command: npx cypress verify
+    - persist_to_workspace:
+        root: ~/
+        paths:
+        - project
+        - .cache/Cypress
+    - run:
+        name: Run Cypress tests
+        command: "npx cypress run"
+    - store_artifacts:
+        path: cypress/videos
+    - store_artifacts:
+        path: cypress/screenshots
+workflows:
+  build:
+    jobs:
+    - cypress/run
+  version: 2
