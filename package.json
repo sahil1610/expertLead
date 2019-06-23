@@ -4,7 +4,7 @@
   "description": "Cypress Broken Link Checker",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run"
   },
   "keywords": [
     "el"
@@ -12,7 +12,7 @@
   "author": "Sahil Goyal",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^3.3.1",
-    "cypress-xpath": "^1.4.0"
+    "cheerio": "^1.0.0-rc.3",
+    "cypress": "^3.3.1"
   }
 }

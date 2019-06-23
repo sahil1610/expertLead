@@ -7,8 +7,8 @@ jobs:
     steps:
     - checkout
     - run:
-        name: npm install
-        command: npm install
+        name: yarn install
+        command: yarn install
     - run:
         command: npx cypress verify
     - persist_to_workspace:
@@ -18,7 +18,7 @@ jobs:
         - .cache/Cypress
     - run:
         name: Run Cypress tests
-        command: "npx cypress run"
+        command: "npm run test"
     - store_artifacts:
         path: cypress/videos
     - store_artifacts:
