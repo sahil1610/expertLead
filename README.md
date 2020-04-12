@@ -1,6 +1,8 @@
 ### Problem Statement
 To find all the broken links on website http://www.cypress.io using **Cypress.io**.
 
+
+
 *Note: Only the links pointing to domain cypress.io were required to be checked.*
 ### Prerequisites
 1. Node (any version)
