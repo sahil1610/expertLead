@@ -2,7 +2,6 @@
 To find all the broken links on website http://www.cypress.io using **Cypress.io**.
 
 *Note: Only the links pointing to domain cypress.io were required to be checked.*
-i
 ### Prerequisites
 1. Node (any version)
 2. Yarn (any version) globally
