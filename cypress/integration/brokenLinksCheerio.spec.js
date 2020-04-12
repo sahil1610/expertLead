@@ -27,7 +27,6 @@ const checkIfLinkIsBroken = (link) => {
  */
 const checkUrlStatusAcrossWebsite = (pageUrl) => {
     //Finds unique url on the page and then checks if the url is broken or not
-    cy.task('log', 'Finding Urls on page: ' + pageUrl);
     addUniqueUrlsToMap(pageUrl).then(() => {
         for (let prop in urlMap) {
             //Check broken status only when the url is not yet scrapped (checked)
@@ -35,7 +34,11 @@ const checkUrlStatusAcrossWebsite = (pageUrl) => {
                 if (urlMap[prop]['isToBeScrapped']) {
                     urlMap[prop]['isToBeScrapped'] = false;
                     checkIfLinkIsBroken(prop).then((isBroken) => {
-                        urlMap[prop]['isBroken'] = isBroken;;
+                        urlMap[prop]['isBroken'] = isBroken;
+
+                        if (isBroken) {
+                            cy.task('log', prop + " *** " + urlMap[prop]['parentPage']);
+                        }
                     });
                     //recursively iterate over all the urls until all of them are checked
                     checkUrlStatusAcrossWebsite(prop);
@@ -56,7 +59,7 @@ const addUniqueUrlsToMap = (pageUrl) => {
         urlsArray.forEach((link) => {
             //add only when urlmap doesn't contain the url
             if (!urlMap.hasOwnProperty(link)) {
-                urlMap[link] = {'isToBeScrapped': true};
+                urlMap[link] = {'isToBeScrapped': true, 'parentPage': pageUrl};
             }
         });
     });
